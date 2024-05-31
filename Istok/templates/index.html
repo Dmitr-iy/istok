@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div class="info_user">{{ user.username }}</div>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Выход</button>
+    </form>
+    {% endif %}
+    <a href="#" id="openLoginModalBtn">login</a>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="login-container">
+                <div id="loginFormContainer" class="form-container login-form">
+                    <span class="close">&times;</span>
+                    <h2>Вход</h2>
+                    <form id="loginForm" method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username">Телефон или email</label>
+                            <input type="text" name="username" maxlength="254" required="" id="id_username">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password">Пароль</label>
+                            <input type="password" name="password" required="" id="id_password">
+                        </div>
+                        <a class="forgot-password" href="#">Забыли пароль?</a>
+                        <div class="login-actions">
+                            <button type="submit" class="login-button">Войти</button>
+                            <div class="social-login">
+                                <button class="social-button google">G</button>
+                                <button class="social-button vk">vk</button>
+                                <button class="social-button apple"></button>
+                                <button class="social-button email">@</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+    
+                <div id="registerFormContainer" class="form-container register-form" style="display: none;">
+                    <span class="close">&times;</span>
+                    <h2>Регистрация</h2>
+                    <form id="registerForm" method="POST" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_first_name">Ваше имя</label>
+                            <input type="text" name="first_name" maxlength="25" required="" id="id_first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_phone_number">Телефон</label>
+                            <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Адрес электронной почты</label>
+                            <input type="email" name="email" required="" id="id_email">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password">Пароль</label>
+                            <input type="password" name="password" required="" id="id_password">
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="consent_to_data_processing" required="" id="id_consent_to_data_processing">
+                            <label for="id_consent_to_data_processing">Я даю согласие на обработку моих персональных данных</label>
+                        </div>
+                        <button type="submit" class="register-button2">Зарегистрироваться</button>
+                    </form>
+                </div>
+    
+                <div class="register-prompt" id="registerPrompt">
+                    <div class="register-prompt-content">
+                        <h3>Еще не зарегистрированы?</h3>
+                        <a href="#" id="showRegisterForm" class="register-button">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>
