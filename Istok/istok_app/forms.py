@@ -66,4 +66,4 @@ class UserProfileForm(forms.ModelForm):
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(max_length=254, label="Email или телефон")
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)        
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
