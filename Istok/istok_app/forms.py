@@ -24,6 +24,8 @@ class UserRegistrationForm(forms.ModelForm):
         phone_number = self.cleaned_data['phone_number']
         if phone_number.startswith('+7'):
             phone_number = phone_number[1:]
+        if not phone_number.isdigit():
+            raise forms.ValidationError('Номер телефона должен состоять только из цифр')
         if len(phone_number) != 11:
             raise forms.ValidationError("Номер телефона должен состоять из 11 цифр")
         if phone_number.startswith('8') or phone_number.startswith('7'):
