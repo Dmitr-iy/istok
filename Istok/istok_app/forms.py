@@ -1,8 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.forms import AuthenticationForm
-
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -15,6 +13,26 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'email', 'phone_number', 'consent_to_data_processing', 'password']
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email):
+            raise forms.ValidationError('Эта электронная почта уже используется')
+        return email
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        if phone_number.startswith('+7'):
+            phone_number = phone_number[1:]
+        if len(phone_number) != 11:
+            raise forms.ValidationError("Номер телефона должен состоять из 11 цифр")
+        if phone_number.startswith('8') or phone_number.startswith('7'):
+            phone_number = '+7' + phone_number[1:]
+        else:
+            raise forms.ValidationError("Номер телефона должен начинаться с 8, 7 или +7")
+        if UserProfile.objects.filter(phone_number=phone_number).exists():
+            raise forms.ValidationError("Этот номер телефона уже используется")
+        return phone_number
 
     def save(self, commit=True):
         user = super().save(commit=False)

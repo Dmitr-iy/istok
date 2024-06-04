@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import  *
+from .forms import *
 from .models import *
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth import login as auth_login
@@ -16,7 +16,7 @@ def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
-            user = user_form.save()
+            user_form.save()
             # login(request, user) 
             return redirect('home')
     else:
