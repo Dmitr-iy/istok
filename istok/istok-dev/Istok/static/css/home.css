@@ -1,0 +1,208 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-container {
+    display: flex;
+    width: 100%;
+}
+
+.form-container {
+    width: 70%;
+    padding: 20px;
+}
+
+.login-form {
+    background-color: #fff;
+}
+
+.register-form {
+    width: 100%;
+    background-image: url('../media/reg-img.png'); 
+    background-size: cover;
+    background-position: center;
+    color: #fff; 
+}
+
+.register-form .form-group label,
+.register-form .form-group input {
+    color: #fff;
+}
+
+.register-form .form-group input {
+    background-color: rgba(255, 255, 255, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.6); 
+}
+
+.register-prompt {
+    width: 30%;
+    background-image: url('../media/img-reg.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.register-prompt::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.register-prompt-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+}
+
+.register-prompt h3 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.register-button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.register-button2 {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 9px;
+    border: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #45a049;
+}
+
+.social-login {
+    display: flex;
+    justify-content: space-around;
+}
+
+.social-button {
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.social-button.google {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.social-button.vk {
+    background-color: #4c75a3;
+    color: white;
+}
+
+.social-button.apple {
+    background-color: #000;
+    color: white;
+}
+
+.social-button.email {
+    background-color: #888;
+    color: white;
+}
