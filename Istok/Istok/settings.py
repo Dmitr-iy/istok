@@ -14,10 +14,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
-    'istok_app',
+    'istok_app.apps.IstokAppConfig',
     'rest_framework',
     'drf_spectacular',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Istok.wsgi.application'
+ASGI_APPLICATION = 'Istok.asgi.application'
 
 DATABASES = {
     'default': {
@@ -111,3 +114,14 @@ SPECTACULAR_SETTINGS = {
     },
     "COMPONENT_SPLIT_REQUEST": True
 }
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+BITRIX_WEBHOOK_URL = 'https://b24-v4a0f2.bitrix24.ru/rest/1/devqxu1gm0p6ny12/'

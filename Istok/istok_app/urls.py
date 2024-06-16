@@ -14,4 +14,6 @@ urlpatterns = [
     path('', index, name='home'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('api/', include(router.urls)),
+
+    path("chat/<str:room_name>/", views.room, name="room"),
 ]

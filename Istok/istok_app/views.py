@@ -1,22 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
-from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import extend_schema, OpenApiExample, extend_schema_view, OpenApiParameter, OpenApiResponse
-from rest_framework import generics, viewsets, status, filters
+from drf_spectacular.utils import extend_schema, OpenApiExample, extend_schema_view
+from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from . import serializers
 from .forms import *
 from .models import *
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth import login as auth_login
-
-from .serializers import UserSerializer, UserProfileSerializer, RenovationLocationSerializer
+from .serializers import UserProfileSerializer, RenovationLocationSerializer
 
 
 def index(request):
@@ -110,3 +101,6 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 class RenovationLocationViewSet(viewsets.ModelViewSet):
     queryset = RenovationLocation.objects.all()
     serializer_class = RenovationLocationSerializer
+
+def room(request, room_name):
+    return render(request, "chat.html")
