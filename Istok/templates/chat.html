@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чат</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+</head>
+<body>
+    <h1>Чат</h1>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="chat-input" placeholder="Введите сообщение">
+        <button id="chat-send">Отправить</button>
+    </div>
+
+    <script>
+        var chatSocket = new ReconnectingWebSocket('ws://' + window.location.host + '/ws/chat/');
+
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data.message;
+            var options = data.options;
+
+            var chatMessagesDiv = document.getElementById('chat-messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            chatMessagesDiv.appendChild(messageDiv);
+
+            if (options) {
+                options.forEach(function(option) {
+                    var optionDiv = document.createElement('div');
+                    optionDiv.textContent = option;
+                    optionDiv.addEventListener('click', function() {
+                        chatSocket.send(JSON.stringify({ 'message': option }));
+                    });
+                    chatMessagesDiv.appendChild(optionDiv);
+                });
+            }
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.getElementById('chat-send').onclick = function(e) {
+            var input = document.getElementById('chat-input');
+            var message = input.value;
+            chatSocket.send(JSON.stringify({ 'message': message }));
+            input.value = '';
+        };
+    </script>
+</body>
+</html>
