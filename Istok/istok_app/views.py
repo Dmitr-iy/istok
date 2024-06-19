@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView
 from drf_spectacular.utils import extend_schema, OpenApiExample, extend_schema_view
 from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from .filters import CatalogFilter
 from .forms import *
 from .models import *
 from django.http import JsonResponse, HttpResponseRedirect
@@ -104,3 +106,12 @@ class RenovationLocationViewSet(viewsets.ModelViewSet):
 
 def room(request, room_name):
     return render(request, "chat.html")
+
+def furniture_catalog(request):
+    f = CatalogFilter(request.GET, queryset=Catalog.objects.all())
+    return render(request, 'catalogs.html', {'filter': f})
+
+class CatalogDetailView(DetailView):
+    model = Catalog
+    template_name = 'catalog_detail.html'
+    context_object_name = 'catalog_det'

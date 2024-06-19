@@ -28,3 +28,56 @@ class RenovationLocation(models.Model):
     def __str__(self):
         return self.name
 
+class Catalog(models.Model):
+    CATEGORY_CHOICES = (
+        ('Кухня', 'Кухня'),
+        ('Гардероб', 'Гардероб'),
+        ('Прихожая', 'Прихожая'),
+        ('Комод', 'Комод'),
+        ('Стеллаж', 'Стеллаж')
+    )
+    PURPOSE_CHOICES = (
+        ('Домой', 'Домой'),
+        ('Офис', 'Офис'),
+        ('Детская', 'детская'),
+    )
+    SHAPE_CHOICES = (
+        ('Прямой(ая)', 'Прямой(ая)'),
+        ('Угловой(ая)', 'Угловой(ая)'),
+        ('П-образный(ая)', 'П-образный(ая)'),
+        ('Г-образный(ая)', 'Г-образный(ая)'),
+        ('Скрытый(ая)', 'Скрытый(ая)'),
+    )
+    KITCHEN_CHOICES = (
+        ('С барной стойкой', 'С барной стойкой'),
+        ('С островом', 'С островом'),
+    )
+    FASADE_MATERIAL = (
+        ('ЛДСП', 'ЛДСП'),
+        ('Пленка ПВХ', 'Пленка ПВХ'),
+        ('Пластик AGT', 'Пластик AGT'),
+        ('Пластик Fenix', 'Пластик Fenix'),
+        ('Эмаль', 'Эмаль'),
+    )
+    TABLE_TOP_MATERIAL = (
+        ('Столешница ДСП с покрытием HPL', 'Столешница ДСП с покрытием HPL'),
+        ('Столешница компакт-ламинат', 'Столешница компакт-ламинат'),
+        ('Кварцевые столешницы', 'Кварцевые столешницы'),
+        ('Акриловые столешницы', 'Акриловые столешницы'),
+    )
+
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, null=True, blank=True)
+    shape = models.CharField(max_length=100, choices=SHAPE_CHOICES, null=True, blank=True)
+    kitchen = models.CharField(max_length=100, choices=KITCHEN_CHOICES, null=True, blank=True)
+    purpose = models.CharField(max_length=100, choices=PURPOSE_CHOICES)
+    facade_material = models.CharField(max_length=100, choices=FASADE_MATERIAL, null=True, blank=True)
+    Table_top_material = models.CharField(max_length=100, choices=TABLE_TOP_MATERIAL, null=True, blank=True)
+    image = models.ImageField()
+
+    # для 3D модели
+    # model_file = models.FileField(upload_to='models/')
+
+    def __str__(self):
+        return self.name

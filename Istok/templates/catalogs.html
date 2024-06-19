@@ -1,0 +1,29 @@
+
+
+{% block content %}
+  <h1>Catalog</h1>
+
+  <form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Filter</button>
+  </form>
+
+  <ul>
+ {% for item in filter.qs %}
+  <li>
+    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description }}</p>
+    {% if item.category %}<p>Категория: {{ item.category }}</p>{% endif %}
+    {% if item.shape %}<p>Форма: {{ item.shape }}</p>{% endif %}
+    {% if item.kitchen %}<p>Кухня: {{ item.kitchen }}</p>{% endif %}
+    {% if item.purpose %}<p>Назначение: {{ item.purpose }}</p>{% endif %}
+    {% if item.facade_material %}<p>Материал фасадов: {{ item.facade_material }}</p>{% endif %}
+    {% if item.Table_top_material %}<p>Материал столешницы: {{ item.Table_top_material }}</p>{% endif %}
+  </li>
+{% empty %}
+  <li>No items found</li>
+{% endfor %}
+  </ul>
+
+{% endblock %}

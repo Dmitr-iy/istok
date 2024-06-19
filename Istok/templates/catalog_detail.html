@@ -1,0 +1,32 @@
+<header>
+    <nav>
+    </nav>
+</header>
+<main>
+    <h1>{{ catalog_det.name }}</h1>
+    <p>{{ catalog_det.description }}</p>
+    <ul>
+      {% if catalog_det.category %}
+        <li>Категория: {{ catalog_det.category }}</li>
+      {% endif %}
+      {% if catalog_det.purpose %}
+        <li>Назначение: {{ catalog_det.purpose }}</li>
+      {% endif %}
+    </ul>
+    {% if catalog_det.shape %}
+        <p>Форма: {{ catalog_det.shape }}</p>
+    {% endif %}
+    {% if catalog_det.kitchen %}
+        <p>Тип кухни: {{ catalog_det.kitchen }}</p>
+    {% endif %}
+    {% if catalog_det.facade_material %}
+        <p>Материал фасада: {{ catalog_det.facade_material }}</p>
+    {% endif %}
+    {% if catalog_det.Table_top_material %}
+        <p>Материал столешницы: {{ catalog_det.Table_top_material }}</p>
+    {% endif %}
+    {% if catalog_det.image %}
+
+        <img src="{{ catalog_det.image.url }}" alt="{{ catalog_det.name }}">
+
+    {% endif %}
