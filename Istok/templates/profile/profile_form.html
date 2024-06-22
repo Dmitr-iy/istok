@@ -1,0 +1,141 @@
+
+{% load static %}
+                <div class="history-order-text">
+                    <img src="{% static 'media/line.svg' %}" alt="line">
+                    <div class="order-text">
+                        Личные данные 
+                    </div>
+                </div>
+                <form method="post" action="{% url 'user_profile' user.username %}">
+                    {% csrf_token %}
+                    <div class="form-group-prof">
+                        <div class="form-block-1">
+                            <div class="forms-block-left">
+                                <div class="form-groups">
+                                    <label for="id_first_name" class="form-label">Имя</label>
+                                    {{ user_profile_form.first_name }}
+                                </div>
+                                <div class="form-groups">
+                                    <label for="id_surname" class="form-label">Отчество</label>
+                                    {{ user_profile_form.surname }}
+                                </div>
+                                <div class="form-groupss">
+                                    <label for="id_gender" class="form-label">Пол</label>
+                                    <div class="form-radio-group">
+                                        {% for choice in user_profile_form.gender %}
+                                            <div class="radio-inline">
+                                                {{ choice.tag }}
+                                                {{ choice.choice_label }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                        
+                            </div>
+                            <div class="forms-block-right">
+                                <div class="form-groups">
+                                    <label for="id_last_name" class="form-label">Фамилия</label>
+                                    {{ user_profile_form.last_name }}
+                                </div>
+                                
+                                <div class="form-groups">
+                                    <label for="id_date_of_birth" class="form-label">Дата рождения</label>
+                                    {{ user_profile_form.date_of_birth }}
+                                </div>
+                                <div class="form-groupss">
+                                    <label for="id_has_children" class="form-label">Есть дети</label>
+                                    <div class="form-radio-group">
+                                        {% for choice in user_profile_form.has_children %}
+                                            <div class="radio-inline">
+                                                {{ choice.tag }}
+                                                {{ choice.choice_label }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="history-order-text">
+                            <img src="{% static 'media/line.svg' %}" alt="line">
+                            <div class="order-text">
+                                Контактные данные 
+                            </div>
+                        </div>
+                        <div class="form-block-1">
+                            <div class="forms-block-left">
+                                <div class="form-groups">
+                                    <label for="id_phone_number" class="form-label">Телефон</label>
+                                    {{ user_profile_form.phone_number }}
+                                </div>
+                            </div>
+                            <div class="forms-block-right">
+                                <div class="form-groups">
+                                    <label for="id_email" class="form-label">Почта</label>
+                                    {{ user_profile_form.email}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="history-order-text">
+                            <img src="{% static 'media/line.svg' %}" alt="line">
+                            <div class="order-text">
+                                Дополнительная иформация 
+                            </div>
+                        </div>
+                        <div class="form-block-1">
+                            <div class="forms-block-left">
+                                <div class="form-groupss">
+                                    <label for="id_ren_planned" class="form-label">Планируется ли ремонт</label>
+                                    <div class="form-radio-group">
+                                        {% for choice in user_profile_form.ren_planned %}
+                                            <div class="radio-inline">
+                                                {{ choice.tag }}
+                                                {{ choice.choice_label }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="form-groupss">
+                                    <label for="id_renovation_plan" class="form-label">Есть да то когда?</label>
+                                    <div class="form-radio-group-ren">
+                                        {% for choice in user_profile_form.renovation_plan %}
+                                            <div class="radio-inline">
+                                                {{ choice.tag }}
+                                                {{ choice.choice_label }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="forms-block-right1">
+                                <div class="form-groups1">
+                                    <label for="id_renovation_location" class="form-label">Место ремонта</label>
+                                    <div class="form-radio-group-plann">
+                                        {% for checkbox in user_profile_form.renovation_location %}
+                                            <div class="radio-inline-plann">
+                                                {{ checkbox.tag }}
+                                                {{ checkbox.choice_label }}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-block-1">
+                        <div class="form-groups5">
+                            <label for="id_subscription_consent" class="form-label">Даю согласие на рассылку полезных материалов</label>
+                            <div class="radio-inline-plann">
+                            {{ user_profile_form.subscription_consent }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="profile-but">
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                        <div class="help-text-bot">
+                        Нажимая на кнопку, Вы даете согласие на <u>обработку персональных данных</u> и </br>
+                         соглашаетесь с <u>политикой конфиденциальности</u>.
+                    </div>
+                </form>
+            </div>
+            

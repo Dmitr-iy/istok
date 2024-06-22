@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Исток</title>
+    <link rel="stylesheet" href="{% static 'css/base/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/login.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo-head">
+            <img src="{% static 'media/logo.svg' %}" alt="logo">
+        </div>
+        <div class="title-head">
+            <div class="title">
+                О компании
+                <img class="arrow-head" src="{% static 'media/arrow.svg' %}" alt="arrow">
+            </div>
+            <div class="title">
+                Каталог
+                <img class="arrow-head" src="{% static 'media/arrow.svg' %}" alt="arrow">
+            </div>
+            <div class="title">
+                Услуги
+                <img class="arrow-head" src="{% static 'media/arrow.svg' %}" alt="arrow">
+            </div>
+            <div class="title">
+                Материалы
+                <img class="arrow-head" src="{% static 'media/arrow.svg' %}" alt="arrow">
+            </div>
+            <div class="title">
+                Акции
+                <img class="arrow-head" src="{% static 'media/arrow.svg' %}" alt="arrow"> 
+            </div>
+        </div>
+        <div class="contact-logo">
+            <img class="contact-img" src="{% static 'media/tel.svg' %}" alt="tel">
+            <a href="#" id="openLoginModalBtn"><img class="contact-img" src="{% static 'media/user.svg' %}" alt="user"></a>
+        </div>
+        <div class="but-sign_up">
+            <button>
+                Записаться 
+            </button>
+        </div>
+    </header>
+    {% if not user.is_authenticated %}
+    <div id="loginModal" class="modal">
+        <div id="loginFormContainer" class="login-form-container">
+            <div class="form-login">
+                <div class="login-text">Вход</div>
+                <form id="loginForm" method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_username">Телефон или email</label>
+                        <input type="text" name="username" maxlength="254" required="" id="id_username">
+                        <div class="error" id="error_username"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password">Пароль</label>
+                        <input type="password" name="password" required="" id="id_password">
+                        <div class="error" id="error_password"></div>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Забыли пароль?</a>
+                    </div>
+                    <div class="error-login" id="error_non_field_errors"></div>
+                    <div class="login-actions">
+                        <button type="submit" class="login-button">Войти</button>
+                        <div class="social">
+                            <div class="networks">
+                                <img src="{% static 'media/google.svg' %}" alt="networks">
+                            </div>
+                            <div class="networks">
+                                <img src="{% static 'media/vk.svg' %}" alt="networks">
+                            </div>
+                            <div class="networks">
+                                <img src="{% static 'media/apple.svg' %}" alt="networks">
+                            </div>
+                            <div class="networks">
+                                <img src="{% static 'media/mail.svg' %}" alt="networks">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="login-regist">
+                <span class="close-login">&times;</span>
+                <div class="login-regist-cont">
+                    <div class="logint-reg-text">Еще не зарегистрированы?</div>
+                    <div class="login-reg-but">
+                        <button id="showRegisterFormFromLogin">Зарегистрироваться</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="registerFormContainer" class="register-form">
+            <span class="close">&times;</span>
+            <div class="form-register">
+                <div class="register-text">Регистрация</div>
+                <form id="registerForm" method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="reg-group">
+                        <label for="id_first_name">Ваше имя</label>
+                        <input type="text" name="first_name" maxlength="25" required="" id="id_first_name">
+                        <div class="error" id="error_first_name"></div>
+                    </div>
+                    <div class="reg-group">
+                        <label for="id_phone_number">Телефон</label>
+                        <input type="text" name="phone_number" maxlength="15" required="" id="id_phone_number">
+                        <div class="error" id="error_phone_number"></div>
+                    </div>
+                    <div class="reg-group">
+                        <label for="id_email">Адрес электронной почты</label>
+                        <input type="email" name="email" required="" id="id_email">
+                        <div class="error" id="error_email"></div>
+                    </div>
+                    <div class="reg-group">
+                        <label for="id_password">Пароль</label>
+                        <input type="password" name="password" required="" id="id_password">
+                        <div class="error" id="error_password"></div>
+                    </div>
+                    <div class="reg-group-check">
+                        <input type="checkbox" name="consent_to_data_processing" required="" id="id_consent_to_data_processing">
+                        <label for="id_consent_to_data_processing">Я даю согласие на обработку персональных данных.<br>
+                            С Политикой конфиденциальности и Пользовательским соглашением ознакомлен(-а).
+                        </label>
+                        <div class="error" id="error_consent_to_data_processing"></div>
+                    </div>
+                    <div class="reg-but-form">
+                        <button type="submit">Зарегистрироваться</button>
+                    </div>
+                    <div class="error" id="error_non_field_errors"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div id="loginModal" class="modal-login">
+        <div class="auth-login">
+            <div class="profile">
+            <div class="profile-info">
+                <div class="img-prof">
+                    <a href="{% url 'user_profile' user.username %}">
+                    <img src="{% static 'media/prof.png' %}" alt="profile">
+                    </a>
+                </div>
+                <div class="profile-auth">
+                    <div class="profile-first-name">
+                        <a href="{% url 'user_profile' user.username %}">
+                        <b>{{ user_profile.first_name }}</b>
+                        </a>
+                    </div>
+                    <div class="profile-phone">
+                        <a href="{% url 'user_profile' user.username %}">
+                        {{ user_profile.phone_number }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="profile-menu">
+                <div class="history-prof">
+                    <img src="{% static 'media/history.svg' %}" alt="history">
+                    <div class="history-text">
+                        История заказов 
+                    </div>
+                </div>
+                <div class="history-prof">
+                    <img src="{% static 'media/favorites.svg' %}" alt="favorites">
+                    <div class="history-text">
+                        Избраное 
+                    </div>
+                </div>
+                <div class="history-prof">
+                    <img src="{% static 'media/bonus.svg' %}" alt="bonus">
+                    <div class="history-text">
+                        Бонусная система
+                    </div>
+                </div>
+            </div>
+        <hr>
+        <div class="logout-prof">
+            <div class="logout-text">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Выход</button>
+                </form>
+            </div>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-image-button">
+                    <img src="{% static 'media/logout.svg' %}" alt="logout">
+                </button>
+            </form>
+        </div>
+
+        </div>
+    </div>  
+    {% endif %}  
+    
+    
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="{% static 'js/header.js' %}"></script>
+</body>
+</html>

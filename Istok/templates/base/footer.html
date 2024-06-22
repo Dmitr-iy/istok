@@ -1,0 +1,87 @@
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+<footer>
+    <div class="footer-content">
+    <div class="foot-block1">
+        <img src="{% static 'media/logo.svg' %}" alt="logo">
+        <div class="foot-block1-text">
+            2024 © ISTOK</br>
+            Обработка персональных данных</br>
+            Политика конфиденцальности</br>
+        </div>
+    </div>
+    <div class="foot-block2">
+        <div class="foot-block2-text">
+            {% if not user.is_authenticated %}
+            <a href="#" id="openLoginModalBtn">Личный кабинет</a>
+            {% else %}
+        <a href="{% url 'user_profile' user.username %}">Личный кабинет</a>
+        {% endif %}
+        <a href="#">Материалы</a>
+        <a href="#">Каталог</a>
+        <a href="#">Акции</a>
+        <a href="#">Поиск</a>
+    </div>
+    </div>
+    <div class="foot-block3">
+        <div class="foot-block3-text">
+            <div class="block-title">
+                <a href="#">Услуги</a>
+            </div>
+            <div class="block-text">
+            <a href="#">Гарантия</a>
+            <a href="#">Оплата</a>
+            <a href="#">Доставка</a>
+            <a href="#">Кредит</a>
+            </div>
+        </div>
+    </div>
+    <div class="foot-block3">
+        <div class="foot-block3-text">
+            <div class="block-title">
+                <a href="#">Комплектующие</a>
+            </div>
+            <div class="block-text">
+            <a href="#">Копус</a>
+            <a href="#">Фасады</a>
+            <a href="#">Столешницы</a>
+            <a href="#">Фурнитура</a>
+            </div>
+        </div>
+    </div>
+    <div class="foot-block3">
+        <div class="foot-block3-text">
+            <div class="block-title">
+                <a href="#">О компании</a>
+            </div>
+            <div class="block-text">
+            <a href="#">О людях</a>
+            <a href="#">Миссия</a>
+            <a href="#">Приемушества</a>
+            <a href="#">Процесс</a>
+            </div>
+        </div>
+    </div>
+    <div class="foot-block4">
+        <div class="foot-block4-text">
+            <div class="block4-title">
+                Контакты
+            </div>
+            <div class="block4-social">
+                <img src="{% static 'media/tg-s.svg' %}" alt="tg">
+                <img src="{% static 'media/vk-s.svg' %}" alt="vk">
+                <img src="{% static 'media/ws.svg' %}" alt="ws">
+            </div>
+            <div class="block4-text">
+                Телефон: 8 (800) 222 00-62 
+            </div>
+            <div class="block4-text">
+                Эл. почта: connect@istok-mebel.ru
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</footer>
+{% endblock %}

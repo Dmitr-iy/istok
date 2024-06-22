@@ -1,0 +1,26 @@
+{% load static %}
+{% block content %}
+<div class="favorites-content">
+    <div class="history-order-text">
+        <img src="{% static 'media/line.svg' %}" alt="line">
+        <div class="order-text">
+            Избранное
+        </div>
+    </div>
+    <div class="block-favorites">
+        <div class="text-top-favarites">
+            Список пока пуст
+        </div>
+        <div class="text-mid-favarites">
+            Перенесите товары из других списков или перейдите </br>
+                в каталог, чтобы добавить новые товары
+        </div>
+        <div class="lamp-img">
+            <img src="{% static 'media/lamp.png' %}" alt="lamp">
+        </div>
+    </div>
+    <div class="fav-button">
+        <button>Перейти в каталог</button>
+    </div>
+</div>
+{% endblock %}

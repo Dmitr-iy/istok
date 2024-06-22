@@ -1,0 +1,75 @@
+{% extends 'base/header.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile/profile.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/profile.js' %}"></script>
+<script src="{% static 'js/header.js' %}"></script>
+
+<div class="profile-content">
+    <div class="lk-text">
+        Личный кабинет
+    </div>
+    <hr class="top-line">
+    <div class="profile-container">
+        <div class="sidebar">
+            <div class="sidebar-cont">
+                <div class="side-url">
+                    <img src="{% static 'media/lk.svg' %}" alt="lk">
+                    <div class="side-text">
+                        <a href="#" data-target="profile-section" data-url="{% url 'user_profile' user.username %}">Профиль</a>
+                    </div>
+                </div>
+                <div class="side-url">
+                    <img src="{% static 'media/history.svg' %}" alt="lk">
+                    <div class="side-text">
+                        <a href="#" data-target="order-history-section" data-url="{% url 'order_history' user.username %}">История заказов</a>
+                    </div>
+                </div>
+                <div class="side-url">
+                    <img src="{% static 'media/favorites.svg' %}" alt="lk">
+                    <div class="side-text">
+                        <a href="#" data-target="favorites-section" data-url="{% url 'favorites' user.username %}">Избранное</a>
+                    </div>
+                </div>
+                <div class="side-url">
+                    <img src="{% static 'media/bonus.svg' %}" alt="lk">
+                    <div class="side-text">
+                        <a href="#" data-target="bonus-program-section" data-url="{% url 'bonus_program' user.username %}">Бонусная программа</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-line">
+            <div class="logout-profile">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <img src="{% static 'media/logout.svg' %}" alt="logout">
+                    </button>
+                </form>
+                <div class="logout-text-prof">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Выход</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div id="profile-section" class="section">
+                {% include 'profile/profile_form.html' %}
+            </div>
+            <div id="order-history-section" class="section" style="display:none;">
+                {% include 'profile/order_history.html' %}
+            </div>
+            <div id="favorites-section" class="section" style="display:none;">
+                {% include 'profile/favorites.html' %}
+            </div>
+            <div id="bonus-program-section" class="section" style="display:none;">
+                {% include 'profile/bonus_program.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'base/footer.html' %}
+{% endblock %}

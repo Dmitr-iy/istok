@@ -1,0 +1,60 @@
+@font-face {
+    font-family: montserat;
+    src: url(../../font/Montserrat-Regular.ttf);
+}
+@font-face {
+    font-family: Mont-med;
+    src: url(../../font/Montserrat-Medium.ttf);
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-head{
+    height: 40px;
+    width: 163px;
+    margin-top: 16px;
+    margin-left: 26px;
+    padding-right: 76px;
+}
+.title-head{
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    font-family: Mont-med;
+    margin-top: 16px;
+    align-items:start;
+    padding-right: 67px;
+
+}
+.title{
+    margin-left: 35px;
+}
+.arrow-head{
+    margin-bottom: 4px;
+}
+.but-sign_up{
+    margin-top: 16px;
+    margin-right: 26px;
+}
+.but-sign_up button{
+    background-color: #6C8D7A;
+    border-radius: 10px;
+    width: 180px;
+    height: 50px;
+    color: #FEFEFE;
+    font-size: 18px;
+    font-family: Mont-med;
+    border: none;
+}
+.contact-logo{
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-left: 16px;
+}
+.contact-logo img{
+    margin-left: 16px;
+}
